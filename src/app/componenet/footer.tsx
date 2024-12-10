@@ -1,4 +1,5 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Link from "next/link";
 
 import React from "react";
 
@@ -65,21 +66,33 @@ const Footer: React.FC = () => {
           <p>Copyright © 2022 Avion LTD</p>
           {/* Right Section */}
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-gray-300" aria-label="Facebook">
+            <Link
+              href="#"
+              className="hover:text-gray-300"
+              aria-label="Facebook"
+            >
               <i className="fab fa-facebook"></i>
-            </a>
-            <a href="#" className="hover:text-gray-300" aria-label="Instagram">
+            </Link>
+            <Link
+              href="#"
+              className="hover:text-gray-300"
+              aria-label="Instagram"
+            >
               <i className="fab fa-instagram"></i>
-            </a>
-            <a href="#" className="hover:text-gray-300" aria-label="Twitter">
+            </Link>
+            <Link href="#" className="hover:text-gray-300" aria-label="Twitter">
               <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#" className="hover:text-gray-300" aria-label="Pinterest">
+            </Link>
+            <Link
+              href="#"
+              className="hover:text-gray-300"
+              aria-label="Pinterest"
+            >
               <i className="fab fa-pinterest"></i>
-            </a>
-            <a href="#" className="hover:text-gray-300" aria-label="YouTube">
+            </Link>
+            <Link href="#" className="hover:text-gray-300" aria-label="YouTube">
               <i className="fab fa-youtube"></i>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

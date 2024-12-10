@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="flex xm:h-[34px] lg:h-[38px] text-[white] bg-[#2A254B] justify-center items-center">
+      <div className="flex xm:h-[34px] lg:h-[38px] text-white bg-[#2A254B] justify-center items-center">
         <div className="flex items-center text-white xm:text-[10px] lg:text-[14px] leading-[16.2px] font-normal gap-1.5">
           <span>
             <TruckIcon className="h-8 w-8 text-white rounded" />
@@ -18,18 +18,19 @@ export default function Home() {
           Free delivery on all orders over £50 with code easter checkout
         </div>
       </div>
+
       <header className="flex justify-between items-center text-white xm:h-[56px] p-[16px] xm:mx-[0px]">
         <div className="flex gap-4">
-          <div className="">
-            <a className="logo" href="/">
+          <div>
+            <Link href="/" className="logo">
               Avion
-            </a>
+            </Link>
           </div>
         </div>
 
         <div className="flex gap-16">
-          <div className="flex items-center gap-[75.5px] ">
-            <ul className="xm:hidden md:flex lg:flex gap-[32px] items-center text-[black]">
+          <div className="flex items-center gap-[75.5px]">
+            <ul className="xm:hidden md:flex lg:flex gap-[32px] items-center text-black">
               <li>
                 <Link href="/About">About us</Link>
               </li>
@@ -42,9 +43,9 @@ export default function Home() {
             </ul>
           </div>
           <div className="flex xm:gap-2 md:gap-4">
-            <button>
+            <Link href="#">
               <Image height={24} width={24} src="/Search.svg" alt="search" />
-            </button>
+            </Link>
             <Link href="/card">
               <button>
                 <Image
@@ -67,8 +68,10 @@ export default function Home() {
               <button
                 className="xm:flex items-center justify-center"
                 onClick={handleNavToggle}
+                aria-expanded={navOpen ? "true" : "false"}
+                aria-controls="mobile-nav"
               >
-                <Image height={16} width={20} src="/Menu2.svg" alt="bar" />
+                <Image height={16} width={20} src="/Menu2.svg" alt="menu" />
               </button>
             </div>
           </div>
@@ -77,7 +80,10 @@ export default function Home() {
 
       {/* Mobile Navigation */}
       {navOpen && (
-        <div className="flex flex-col items-center gap-4 bg-[#F9F9F9] py-4">
+        <div
+          id="mobile-nav"
+          className="flex flex-col items-center gap-4 bg-[#F9F9F9] py-4"
+        >
           <ul className="text-black text-lg">
             <li>
               <Link href="#">All products</Link>
@@ -109,7 +115,7 @@ export default function Home() {
 
       {/* Desktop Navigation */}
       <div className="flex items-center h-[64px] bg-[#F9F9F9] gap-[75.5px] justify-center">
-        <ul className="xm:hidden md:flex lg:flex gap-[32px] items-center text-[black]">
+        <ul className="xm:hidden md:flex lg:flex gap-[32px] items-center text-black">
           <li>
             <Link href="#">All products</Link>
           </li>

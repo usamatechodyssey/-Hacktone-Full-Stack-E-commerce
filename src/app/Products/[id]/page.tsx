@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useParams } from "next/navigation"; // Correct import for Next.js 13 with App Router
+import Image from "next/image"; // Import Image from Next.js
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams(); // Use useParams to get the dynamic route parameter
@@ -41,9 +42,11 @@ const ProductDetail: React.FC = () => {
       <div className="max-w-7xl mx-auto w-full border p-6 mb-10 bg-gray-50 items-center justify-center ">
         <div className="bg-white shadow-lg rounded-lg max-w-7xl w-full flex flex-col md:flex-row overflow-hidden">
           <div className="w-full md:w-1/2 bg-gray-100 flex items-center justify-center">
-            <img
+            <Image
               src={product.image}
               alt={product.title}
+              width={600} // Set width for Image
+              height={600} // Set height for Image
               className="object-cover h-full w-full"
             />
           </div>
