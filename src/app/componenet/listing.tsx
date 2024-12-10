@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"; // Import Image component
 
 const Section: React.FC = () => {
   return (
@@ -19,9 +20,12 @@ const Section: React.FC = () => {
 
       {/* Right Section */}
       <div className="w-full md:w-1/2 md:h-[478px] xm:h-[281px]">
-        <img
+        {/* Use Image component for optimization */}
+        <Image
           src="/Image Block.jpg"
           alt="Room decor"
+          width={1920} // Specify width and height
+          height={478}
           className="w-full h-full object-cover"
         />
       </div>

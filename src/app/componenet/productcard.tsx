@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image"; // Import Image component
 
 const Product = () => {
   const products = [
@@ -35,9 +36,12 @@ const Product = () => {
         {products.map((product) => (
           <div key={product.id} className="text-center cursor-pointer">
             <Link href={`/Products/${product.id}`}>
-              <img
+              {/* Use Image component for optimization */}
+              <Image
                 src={product.image}
                 alt={product.title}
+                width={300} // Set width and height for optimization
+                height={300}
                 className="w-full h-auto rounded-md shadow-sm mb-4"
               />
               <h3 className="text-lg font-medium text-gray-800">

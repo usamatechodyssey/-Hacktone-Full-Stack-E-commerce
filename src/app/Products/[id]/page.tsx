@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import { useParams } from "next/navigation";
-import Product from "@/app/componenet/productcard";
+import { useParams } from "next/navigation"; // Correct import for Next.js 13 with App Router
 
 const ProductDetail: React.FC = () => {
-  const { id } = useParams(); // Extract the dynamic route parameter
+  const { id } = useParams(); // Use useParams to get the dynamic route parameter
 
   // Dummy product data (replace with actual API or data fetching logic)
   const products = [
@@ -21,26 +20,6 @@ const ProductDetail: React.FC = () => {
     {
       id: "2",
       image: "/Photo2.jpg",
-      title: "The Dandy Chair",
-      price: "£250",
-      description:
-        "A timeless design, with premium materials features as one of our most popular and iconic pieces. The Dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.",
-      features: ["Premium material", "Handmade upholstery", "Timeless classic"],
-      dimensions: { height: "110cm", width: "75cm", depth: "50cm" },
-    },
-    {
-      id: "3",
-      image: "/Photo3.jpg",
-      title: "The Dandy Chair",
-      price: "£250",
-      description:
-        "A timeless design, with premium materials features as one of our most popular and iconic pieces. The Dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.",
-      features: ["Premium material", "Handmade upholstery", "Timeless classic"],
-      dimensions: { height: "110cm", width: "75cm", depth: "50cm" },
-    },
-    {
-      id: "4",
-      image: "/Photo4.jpg",
       title: "The Dandy Chair",
       price: "£250",
       description:
@@ -135,7 +114,6 @@ const ProductDetail: React.FC = () => {
           </div>
         </div>
       </div>
-      <Product />
     </div>
   );
 };

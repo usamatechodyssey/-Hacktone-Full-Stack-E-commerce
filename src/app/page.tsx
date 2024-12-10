@@ -3,9 +3,17 @@ import Section from "./componenet/listing";
 import Product from "./componenet/productcard";
 import NewsletterForm from "./componenet/two-baner";
 import Link from "next/link"; // For linking to collection page
+import Image from "next/image"; // For image optimization
 
 const HeroImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
-  <img src={src} alt={alt} className="w-full h-auto object-cover" />
+  <Image
+    src={src}
+    alt={alt}
+    layout="responsive"
+    width={1920} // Adjust according to your design
+    height={1080} // Adjust according to your design
+    className="w-full h-auto object-cover"
+  />
 );
 
 export default function Home() {
