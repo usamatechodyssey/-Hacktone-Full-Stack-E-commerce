@@ -2,17 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ClashDisplay Font */
 @font-face {
-  font-family: 'Clash Display';
-  src: url('/my-ecommerce-2/public/Fonts/WEB/fonts/ClashDisplay-Regular.woff2') format('woff2');
-  font-weight: 400;
+  font-family: "ClashDisplay";
+  src: url("/fonts/Clashdisplay/ClashDisplay-Regular.woff2") format("woff2");
+
+  font-weight: normal; /* Regular */
   font-style: normal;
 }
 
-.logo{
-  font-family: 'Clash Display', sans-serif;
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 29.52px;
-  color: #22202E;
+/* Satoshi Font */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-Regular.woff2") format("woff2");
+  font-weight: normal; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi/Satoshi-Bold.woff2") format("woff2");
+  font-weight: bold; /* Bold */
+  font-style: normal;
+}
+
+/* Global styles for headings and paragraphs */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "ClashDisplay", sans-serif; /* Headings ke liye */
+  }
+
+  p {
+    font-family: "Satoshi", sans-serif; /* Paragraphs ke liye */
+  }
 }

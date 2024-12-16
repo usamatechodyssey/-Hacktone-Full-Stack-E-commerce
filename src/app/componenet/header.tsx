@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { TruckIcon } from "@heroicons/react/solid";
 
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
@@ -13,15 +12,15 @@ export default function Home() {
       <div className="flex xm:h-[34px] lg:h-[38px] text-white bg-[#2A254B] justify-center items-center">
         <div className="flex items-center text-white xm:text-[10px] lg:text-[14px] leading-[16.2px] font-normal gap-1.5">
           <span>
-            <TruckIcon className="h-8 w-8 text-white rounded" />
+            <Image src="/truck2.svg" alt="truck" width={16} height={16} />
           </span>
-          Free delivery on all orders over £50 with code easter checkout
+          <p>Free delivery on all orders over £50 with code easter checkout</p>
         </div>
       </div>
 
-      <header className="flex justify-between items-center text-white xm:h-[56px] p-[16px] xm:mx-[0px]">
-        <div className="flex gap-4">
-          <div>
+      <header className="flex justify-between items-center text-black xm:h-[56px] p-[16px] ">
+        <div className="flex">
+          <div className="font-clash">
             <Link href="/" className="logo">
               Avion
             </Link>
@@ -30,7 +29,10 @@ export default function Home() {
 
         <div className="flex gap-16">
           <div className="flex items-center gap-[75.5px]">
-            <ul className="xm:hidden md:flex lg:flex gap-[32px] items-center text-black">
+            <ul className="xm:hidden md:flex lg:flex gap-[32px] items-center text-black font-satoshi">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
               <li>
                 <Link href="/About">About us</Link>
               </li>
@@ -42,7 +44,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <div className="flex xm:gap-2 md:gap-4">
+          <div className="flex xm:gap-2 md:gap-4 items-center ">
             <Link href="#">
               <Image height={24} width={24} src="/Search.svg" alt="search" />
             </Link>
@@ -64,14 +66,14 @@ export default function Home() {
                 alt="admin"
               />
             </button>
-            <div className="xm:flex md:hidden">
+            <div className="xm:flex  lg:hidden">
               <button
                 className="xm:flex items-center justify-center"
                 onClick={handleNavToggle}
                 aria-expanded={navOpen ? "true" : "false"}
                 aria-controls="mobile-nav"
               >
-                <Image height={16} width={20} src="/Menu2.svg" alt="menu" />
+                <Image height={20} width={20} src="/Menu2.svg" alt="menu" />
               </button>
             </div>
           </div>
@@ -82,11 +84,11 @@ export default function Home() {
       {navOpen && (
         <div
           id="mobile-nav"
-          className="flex flex-col items-center gap-4 bg-[#F9F9F9] py-4"
+          className="flex xm:flex-col items-center gap-4 bg-[#F9F9F9] py-4"
         >
-          <ul className="text-black text-lg">
+          <ul className="text-black text-lg md:flex gap-6 font-satoshi">
             <li>
-              <Link href="#">All products</Link>
+              <Link href="/Allproducts">All products</Link>
             </li>
             <li>
               <Link href="#">Plant pots</Link>
@@ -114,10 +116,10 @@ export default function Home() {
       )}
 
       {/* Desktop Navigation */}
-      <div className="flex items-center h-[64px] bg-[#F9F9F9] gap-[75.5px] justify-center">
-        <ul className="xm:hidden md:flex lg:flex gap-[32px] items-center text-black">
+      <div className="lg:flex xm:hidden items-center h-[64px] bg-[#F9F9F9] gap-[75.5px] justify-center border-t-2">
+        <ul className="xm:hidden md:flex lg:flex gap-[32px] items-center text-black font-satoshi">
           <li>
-            <Link href="#">All products</Link>
+            <Link href="/Allproducts">All products</Link>
           </li>
           <li>
             <Link href="#">Plant pots</Link>

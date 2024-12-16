@@ -28,6 +28,26 @@ const ProductDetail: React.FC = () => {
       features: ["Premium material", "Handmade upholstery", "Timeless classic"],
       dimensions: { height: "110cm", width: "75cm", depth: "50cm" },
     },
+    {
+      id: "3",
+      image: "/Photo3.jpg",
+      title: "The Dandy Chair",
+      price: "£250",
+      description:
+        "A timeless design, with premium materials features as one of our most popular and iconic pieces. The Dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.",
+      features: ["Premium material", "Handmade upholstery", "Timeless classic"],
+      dimensions: { height: "110cm", width: "75cm", depth: "50cm" },
+    },
+    {
+      id: "4",
+      image: "/Photo4.jpg",
+      title: "The Dandy Chair",
+      price: "£250",
+      description:
+        "A timeless design, with premium materials features as one of our most popular and iconic pieces. The Dandy chair is perfect for any stylish living space with beech legs and lambskin leather upholstery.",
+      features: ["Premium material", "Handmade upholstery", "Timeless classic"],
+      dimensions: { height: "110cm", width: "75cm", depth: "50cm" },
+    },
     // Add other product details here
   ];
 
@@ -39,7 +59,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div>
-      <div className="max-w-7xl mx-auto w-full border p-6 mb-10 bg-gray-50 items-center justify-center ">
+      <div className="max-w-7xl mx-auto w-full border p-6 mb-10 mt-10 bg-gray-50 items-center justify-center ">
         <div className="bg-white shadow-lg rounded-lg max-w-7xl w-full flex flex-col md:flex-row overflow-hidden">
           <div className="w-full md:w-1/2 bg-gray-100 flex items-center justify-center">
             <Image

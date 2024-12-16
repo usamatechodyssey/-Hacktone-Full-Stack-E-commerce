@@ -1,6 +1,6 @@
 import Abbu from "./componenet/feautures";
 import Section from "./componenet/listing";
-import Product from "./componenet/productcard";
+import Product from "./componenet/dynamic";
 import NewsletterForm from "./componenet/two-baner";
 import Link from "next/link"; // For linking to collection page
 import Image from "next/image"; // For image optimization
@@ -27,10 +27,10 @@ export default function Home() {
 
         {/* Content Section */}
         <div className="px-4 py-8 text-center lg:py-16 lg:px-20 lg:hidden">
-          <h1 className="text-2xl text-left lg:text-4xl font-normal leading-tight text-gray-800 font-clash">
+          <h1 className="text-2xl text-left md:text-center lg:text-4xl font-normal  text-gray-800 ">
             Luxury homeware for people who love timeless design quality
           </h1>
-          <p className="mt-4 text-left text-gray-600 text-base lg:text-lg">
+          <p className="mt-4 md:mt-2 text-left md:text-center text-gray-600 text-base lg:text-lg">
             With our new collection, view over 400 bespoke pieces from homeware
             through to furniture today
           </p>

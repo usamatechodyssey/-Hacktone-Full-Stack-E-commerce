@@ -6,17 +6,22 @@ import Image from "next/image";
 export default function About() {
   return (
     <div>
-      <div className="px-4 md:px-8 lg:px-16">
+      <div className="  flex flex-col justify-center items-center">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between h-auto md:h-[277px] gap-6 md:gap-0">
-          <div className="flex-1 text-center">
-            <h1 className="font-normal text-2xl xm:text-2xl md:text-4xl lg:text-5xl leading-snug">
+        <div className="flex flex-col lg:flex-row xl:flex-row items-center text-left md:text-center lg:text-left xl:px-16 py-7 lg:py-12 lg:px-4">
+          {/* Text Section */}
+          <div className="flex-1 mb-6 lg:mb-0 md:px-8 lg:px-0 px-4">
+            {" "}
+            {/* Added padding-left here */}
+            <h1 className=" font-normal xm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl ">
               A brand built on the love of craftsmanship, quality, and
               outstanding customer service
             </h1>
           </div>
-          <div>
-            <button className="w-full sm:w-[192px] h-[56px] bg-[#F9F9F9] px-6 py-2 text-sm md:text-base rounded hover:bg-gray-200 transition">
+
+          {/* Button Section */}
+          <div className="flex  justify-center lg:justify-start">
+            <button className="h-[56px] bg-[#F9F9F9]  xm:px-20 md:px-6 py-2 text-sm rounded hover:bg-gray-200 transition font-satoshi">
               View our products
             </button>
           </div>
@@ -41,10 +46,10 @@ export default function About() {
 
           {/* Left Section */}
           <div className="bg-[#F9F9F9] text-[#2A254B] p-6 md:p-8 lg:p-12 flex flex-col justify-center items-start w-full md:w-1/2 h-auto md:h-[478px]">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4">
+            <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl mb-4">
               Our service isn’t just personal, it’s actually hyper personally
               exquisite
-            </h2>
+            </h1>
             <div>
               <p className="text-sm sm:text-base md:text-lg mb-4">
                 When we started Avion, the idea was simple. Make high-quality
@@ -56,7 +61,7 @@ export default function About() {
                 hotbed for the London interior design community.
               </p>
             </div>
-            <button className="bg-gray-200 text-black px-4 py-2 text-sm md:text-base rounded hover:bg-gray-300 transition">
+            <button className="bg-gray-200 text-black px-4 py-2 text-sm md:text-base rounded hover:bg-gray-300 transition font-satoshi">
               View collection
             </button>
           </div>
