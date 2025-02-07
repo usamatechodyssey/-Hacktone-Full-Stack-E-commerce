@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        clash: ['ClashDisplay', 'sans-serif'], // Headings ke liye
-        satoshi: ['Satoshi', 'sans-serif'],    // Paragraphs ke liye
+        clash: ['ClashDisplay', 'Arial', 'sans-serif'], // Headings ke liye
+        satoshi: ['ClashDisplay', 'Arial', 'sans-serif'],    // Paragraphs ke liye
       },
   
       screens: {

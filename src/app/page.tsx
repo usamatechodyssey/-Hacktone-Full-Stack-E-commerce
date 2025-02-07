@@ -1,7 +1,7 @@
-import Abbu from "./componenet/feautures";
-import Section from "./componenet/listing";
-import Product from "./componenet/dynamic";
-import NewsletterForm from "./componenet/two-baner";
+import Abbu from "./componenets/feautures";
+import Section from "./componenets/listing";
+import Product from "./componenets/HomeProduct";
+import NewsletterForm from "./componenets/two-baner";
 import Link from "next/link"; // For linking to collection page
 import Image from "next/image"; // For image optimization
 
@@ -9,7 +9,7 @@ const HeroImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => (
   <Image
     src={src}
     alt={alt}
-    layout="responsive"
+    // layout="responsive"s
     width={1920} // Adjust according to your design
     height={1080} // Adjust according to your design
     className="w-full h-auto object-cover"
