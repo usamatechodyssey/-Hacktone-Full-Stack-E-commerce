@@ -47,7 +47,7 @@ export default function About() {
         {/* Left Section */}
         <div className="bg-[#F9F9F9] text-[#2A254B] p-6 md:p-8 lg:p-12 flex flex-col justify-center items-start w-full md:w-1/2 h-auto md:h-[478px]">
           <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl mb-4">
-            Our service isn’t just personal, it’s actually hyper personally
+            Our service isnt just personal, its actually hyper personally
             exquisite
           </h1>
           <div>

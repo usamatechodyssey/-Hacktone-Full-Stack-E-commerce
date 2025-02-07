@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { client } from "@/sanity/lib/client";
+import { Order } from "../componenets/typeofproduct"; // Assuming interfaces are in `types/order.ts`
 
 export default function OrdersPage() {
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const { userId } = useAuth();
 
@@ -15,7 +16,7 @@ export default function OrdersPage() {
 
       try {
         const query = `*[_type == "order" && clerkUserId == $userId] | order(createdAt desc)`;
-        const orders = await client.fetch(query, { userId });
+        const orders: Order[] = await client.fetch(query, { userId });
         setOrders(orders);
       } catch (error) {
         console.error("Failed to fetch orders:", error);
@@ -61,7 +62,11 @@ export default function OrdersPage() {
                   <span className="font-medium">${order.totalAmount}</span>
                 </p>
                 <p
-                  className={`text-sm font-medium ${order.status === "Delivered" ? "text-green-600" : "text-yellow-600"}`}
+                  className={`text-sm font-medium ${
+                    order.status === "Delivered"
+                      ? "text-green-600"
+                      : "text-yellow-600"
+                  }`}
                 >
                   Status: {order.status}
                 </p>
@@ -73,9 +78,9 @@ export default function OrdersPage() {
                     Products:
                   </h3>
                   <div className="space-y-2 mt-2">
-                    {order.products.map((product: any) => (
+                    {order.products.map((product) => (
                       <div
-                        key={product.productId}
+                        key={product._id}
                         className="border p-3 rounded-md bg-gray-100"
                       >
                         <p className="text-gray-700 font-medium">

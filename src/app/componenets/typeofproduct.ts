@@ -9,6 +9,7 @@ export interface Produc {
   price: number;
   quantity: number;
   weight:number;
+  imageRef:string;
   slug: {
     current: string;
   };
@@ -31,3 +32,20 @@ export interface Produc {
 
 
 
+export interface category {
+  _id: string;
+  name: string;
+  slug: string;
+  imageUrl: string;
+  price: number;
+  quantity:number;
+}
+
+
+export interface Order {
+  orderId: string;
+  totalAmount: number;
+  status: string;
+  createdAt: string;
+  products: category[];
+}

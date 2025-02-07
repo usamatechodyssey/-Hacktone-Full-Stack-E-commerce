@@ -20,14 +20,18 @@ const ShoppingCart = () => {
     }
   }, [user]);
 
-  // LocalStorage se cart fetch karna
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedCart = localStorage.getItem("cart");
       if (storedCart) {
-        const value = JSON.parse(storedCart);
-        const items = Object.values(value) as Produc[];
-        setProducts(items);
+        try {
+          const value = JSON.parse(storedCart);
+          const items = Object.values(value) as Produc[];
+          setProducts(items);
+        } catch (error) {
+          console.error("Error parsing cart data:", error);
+          localStorage.removeItem("cart"); // Crucial: Remove corrupted data
+        }
       }
     }
   }, []);
@@ -70,7 +74,7 @@ const ShoppingCart = () => {
     );
     updateCart(updatedProducts);
   };
-  setLoading;
+
   // Ek product delete karna
   const deleteProduct = (id: string) => {
     const updatedProducts = products.filter((product) => product._id !== id);
@@ -113,14 +117,26 @@ const ShoppingCart = () => {
   };
 
   // components/ShoppingCart.tsx
+
   const handleCheckout = async () => {
     if (selectedProducts.length === 0) {
       alert("Please select at least one product to proceed to checkout.");
       return;
     }
+    setLoading(true); // Set loading to true before the asynchronous operation
 
-    // Redirect to the form page
-    window.location.href = "/checkout/form";
+    try {
+      // Simulate an async operation (replace with your actual API call)
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // Redirect after successful checkout (or your API call completes)
+      window.location.href = "/checkout/form";
+    } catch (error) {
+      console.error("Error during checkout:", error);
+      alert("Error during checkout. Please try again.");
+    } finally {
+      setLoading(false); // Set loading to false, regardless of success or failure
+    }
   };
 
   return (

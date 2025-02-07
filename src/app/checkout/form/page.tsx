@@ -8,11 +8,14 @@ export default function CheckoutForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    address: "",
+    phone: "", // Required by DHL and other carriers
+    street1: "",
+    street2: "",
     city: "",
     state: "",
     zip: "",
-    country: "",
+    country: "US", // Default to US, but allow changes
+    company: "", // Optional field
   });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -65,11 +68,28 @@ export default function CheckoutForm() {
           />
           <input
             type="text"
-            name="address"
-            placeholder="Address"
-            value={formData.address}
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
             onChange={handleChange}
             required
+            className="p-2 border rounded-md"
+          />
+          <input
+            type="text"
+            name="street1"
+            placeholder="Street Address 1"
+            value={formData.street1}
+            onChange={handleChange}
+            required
+            className="p-2 border rounded-md"
+          />
+          <input
+            type="text"
+            name="street2"
+            placeholder="Street Address 2"
+            value={formData.street2}
+            onChange={handleChange}
             className="p-2 border rounded-md"
           />
           <input
@@ -106,6 +126,14 @@ export default function CheckoutForm() {
             value={formData.country}
             onChange={handleChange}
             required
+            className="p-2 border rounded-md"
+          />
+          <input
+            type="text"
+            name="company"
+            placeholder="Company (Optional)"
+            value={formData.company}
+            onChange={handleChange}
             className="p-2 border rounded-md"
           />
         </div>

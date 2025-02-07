@@ -1,9 +1,17 @@
 // pages/api/webhook.ts
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { Shippo } from "shippo";
 import { client } from "@/sanity/lib/client";
+import { Produc } from "@/app/componenets/typeofproduct";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const shippoClient = new Shippo({
+  apiKeyHeader: `ShippoToken ${process.env.SHIPPO_API_KEY}`,
+  shippoApiVersion: "2018-02-08",
+});
+
+
 
 export async function POST(req: Request) {
   const payload = await req.text();
@@ -20,16 +28,24 @@ export async function POST(req: Request) {
       const session = event.data.object as Stripe.Checkout.Session;
       const productsData = JSON.parse(session.metadata?.products || "[]");
       const shippingInfo = JSON.parse(session.metadata?.shippingInfo || "{}");
-      const clerkUserId = session.metadata?.clerkUserId; // Extract the Clerk user ID
+      const clerkUserId = session.metadata?.clerkUserId;
+      const shippoRateId = session.metadata?.shippoRateId ?? "";
 
       // Validate products data
-      const validProducts = productsData.filter((p: any) => p.imageRef);
+      const validProducts = productsData.filter((p: Produc) => p.imageRef);
+       // Create a Shippo transaction
+       const transaction = await shippoClient.transactions.create({
+        rate:shippoRateId,
+        labelFileType: "PDF",
+        async: false,
+      });
+
 
       await client.create({
         _type: "order",
         orderId: session.id,
         clerkUserId, // Save the Clerk user ID
-        products: validProducts.map((product: any) => ({
+        products: validProducts.map((product: Produc) => ({
           productId: product._id,
           name: product.name,
           quantity: product.quantity,
@@ -42,9 +58,13 @@ export async function POST(req: Request) {
             },
           },
         })),
+
+
         shippingInfo,
         totalAmount: session.amount_total ? session.amount_total / 100 : 0,
         status: "paid",
+        trackingId: transaction.trackingNumber,
+        labelUrl: transaction.labelUrl,
         createdAt: new Date().toISOString(),
       });
     }

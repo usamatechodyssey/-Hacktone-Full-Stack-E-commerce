@@ -6,7 +6,6 @@ import { useUser, useClerk } from "@clerk/nextjs";
 
 export default function AddToCart({ product }: { product: Produc }) {
   const [tempQuantity, setTempQuantity] = useState(1); // Temporary quantity state
-  const [totalPrice, setTotalPrice] = useState(product.price); // Updated price based on quantity
 
   const { user } = useUser();
   const { openSignIn } = useClerk();
@@ -58,7 +57,6 @@ export default function AddToCart({ product }: { product: Produc }) {
 
     alert(`${product.name} added to cart!`);
     setTempQuantity(1); // Reset tempQuantity after adding to cart
-    setTotalPrice(product.price); // Reset total price
   };
 
   return (

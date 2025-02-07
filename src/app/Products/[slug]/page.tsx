@@ -34,7 +34,7 @@ export default async function CategoryPage({ params }: Props) {
           _id,
           url
         },
-        dimensions {  // ✅ Corrected this part
+        dimensions {  
           depth,
           width,
           height

@@ -1,10 +1,14 @@
-// components/ProductList.tsx
 import Link from "next/link";
 import Image from "next/image";
+import { category } from "./typeofproduct"; // Assuming the interface is in `types/product.ts`
 
-export default function ProductList({ products }: { products: any[] }) {
+interface ProductListProps {
+  products: category[];
+}
+
+export default function ProductList({ products }: ProductListProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-4  gap-8 w-full ">
+    <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 w-full">
       {products.map((product) => (
         <div
           key={product._id}
@@ -12,14 +16,12 @@ export default function ProductList({ products }: { products: any[] }) {
         >
           <Link href={`/Products/${product.slug}`}>
             <div className="w-full h-72 relative">
-              {" "}
-              {/* Fixed size container */}
               <Image
                 src={product.imageUrl}
                 alt={product.name}
-                fill // Fill the container
+                fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover rounded-lg" // Maintain aspect ratio
+                className="object-cover rounded-lg"
               />
             </div>
             <h3 className="text-left font-medium text-gray-800 mt-4">

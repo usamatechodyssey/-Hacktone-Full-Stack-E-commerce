@@ -84,7 +84,7 @@ export default function OrdersPage() {
               </div>
 
               <div className="space-y-3">
-                {order.products.map((product, index) => (
+                {order.products.map((product) => (
                   <div
                     key={product.productId}
                     className="flex items-center space-x-4 border-b pb-3"

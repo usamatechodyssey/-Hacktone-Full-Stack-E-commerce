@@ -3,12 +3,10 @@
 import { useState, useRef, useEffect } from "react";
 import { UserButton, useUser, useClerk } from "@clerk/nextjs";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function ProfileDropdown() {
   const { isSignedIn } = useUser();
   const { signOut } = useClerk();
-  const router = useRouter();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref for the dropdown container
 

@@ -29,16 +29,10 @@ const getTotalQuantity = () => {
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
   const [cartQuantity, setCartQuantity] = useState(0);
-  const [searchOpen, setSearchOpen] = useState(false);
 
   // Navbar toggle function
   const handleNavToggle = () => {
     setNavOpen(!navOpen);
-  };
-
-  // Search bar toggle function
-  const handleSearchToggle = () => {
-    setSearchOpen(!searchOpen);
   };
 
   useEffect(() => {
@@ -137,9 +131,7 @@ export default function Home() {
             </ul>
           </div>
           <div className="flex xm:gap-2 md:gap-4 items-center ">
-            <div
-              className={`xm:${searchOpen ? "block" : "hidden"} md:block  xm:hidden`}
-            >
+            <div className="  xm:hidden md:block">
               <SearchBar />
             </div>
             <ProfileDropdown />
