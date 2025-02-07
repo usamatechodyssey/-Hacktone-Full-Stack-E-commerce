@@ -115,11 +115,11 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ url: session.url });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Checkout Error:", error);
-    return NextResponse.json(
-      { error: error.message || "Checkout failed" },
-      { status: 500 }
-    );
+    
+    const errorMessage = error instanceof Error ? error.message : "Checkout failed";
+  
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

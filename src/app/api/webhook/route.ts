@@ -70,11 +70,12 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ received: true });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Webhook Error:", error);
-    return NextResponse.json(
-      { error: error.message || "Webhook failed" },
-      { status: 500 }
-    );
+    
+    const errorMessage = error instanceof Error ? error.message : "Webhook failed";
+  
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
+  
 }
