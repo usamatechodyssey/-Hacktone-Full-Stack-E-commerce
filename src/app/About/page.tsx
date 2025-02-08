@@ -2,7 +2,7 @@ import Section from "../componenets/listing";
 import Abbu from "../componenets/feautures";
 import NewsletterForm from "../componenets/two-baner";
 import Image from "next/image";
-
+import Link from "next/link";
 export default function About() {
   return (
     <div>
@@ -19,12 +19,14 @@ export default function About() {
 
         {/* Button Section */}
         <div className="flex justify-center lg:justify-start">
-          <button
-            className="h-[56px] bg-[#F9F9F9] px-6 py-2 text-sm rounded hover:bg-gray-200 transition font-satoshi"
-            aria-label="View our products"
-          >
-            View our products
-          </button>
+          <Link href="/Allproducts">
+            <button
+              className="h-[56px] bg-[#F9F9F9] px-6 py-2 text-sm rounded hover:bg-gray-200 transition font-satoshi"
+              aria-label="View our products"
+            >
+              View our products
+            </button>
+          </Link>
         </div>
       </div>
 
@@ -33,14 +35,16 @@ export default function About() {
 
       {/* Content Section */}
       <div className="flex flex-col md:flex-row">
-        {/* Right Section */}
-        <div className="w-full md:w-1/2 h-[250px] md:h-[478px] relative">
+        <div className="w-full md:w-1/2 md:h-[478px] xm:h-[281px] relative">
+          {/* Use Image component for optimization */}
           <Image
             src="/Image3.jpg"
             alt="Room decor"
-            fill
+            // width={1920} // Specify width and height
+            // height={478}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px)"
-            // className="w-auto h-full object-cover"
+            fill
+            className="w-auto h-full object-cover"
           />
         </div>
 

@@ -34,7 +34,7 @@ export default function Home() {
             With our new collection, view over 400 bespoke pieces from homeware
             through to furniture today
           </p>
-          <Link href="/collection">
+          <Link href="/Allproducts">
             <button className="mt-6 px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-lg shadow-md">
               View collection
             </button>

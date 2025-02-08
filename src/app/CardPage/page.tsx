@@ -36,7 +36,6 @@ const ShoppingCart = () => {
     }
   }, []);
 
-  // Cart update karne ke liye helper function
   const updateCart = (updatedProducts: Produc[]) => {
     const cart = updatedProducts.reduce(
       (acc, product) => ({ ...acc, [product._id]: product }),
@@ -47,7 +46,6 @@ const ShoppingCart = () => {
     window.dispatchEvent(new Event("cartUpdated"));
   };
 
-  // Quantity increment
   const incrementQuantity = (id: string) => {
     const updatedProducts = products.map((product) =>
       product._id === id
@@ -61,7 +59,6 @@ const ShoppingCart = () => {
     updateCart(updatedProducts);
   };
 
-  // Quantity decrement
   const decrementQuantity = (id: string) => {
     const updatedProducts = products.map((product) =>
       product._id === id && product.quantity > 1
@@ -75,14 +72,12 @@ const ShoppingCart = () => {
     updateCart(updatedProducts);
   };
 
-  // Ek product delete karna
   const deleteProduct = (id: string) => {
     const updatedProducts = products.filter((product) => product._id !== id);
     updateCart(updatedProducts);
     setSelectedProducts(selectedProducts.filter((pid) => pid !== id));
   };
 
-  // Sab products delete karna
   const deleteAllProducts = () => {
     if (confirm("Are you sure you want to delete all products?")) {
       localStorage.removeItem("cart");
@@ -92,13 +87,11 @@ const ShoppingCart = () => {
     }
   };
 
-  // Selected products ke liye subtotal calculate karna
   const calculateSubtotal = () =>
     products
       .filter((product) => selectedProducts.includes(product._id))
       .reduce((total, product) => total + product.price * product.quantity, 0);
 
-  // Product select/deselect karna
   const handleProductSelect = (id: string) => {
     if (selectedProducts.includes(id)) {
       setSelectedProducts(selectedProducts.filter((pid) => pid !== id));
@@ -107,7 +100,6 @@ const ShoppingCart = () => {
     }
   };
 
-  // "Select All" functionality
   const handleSelectAll = () => {
     if (selectedProducts.length === products.length) {
       setSelectedProducts([]);
@@ -116,36 +108,92 @@ const ShoppingCart = () => {
     }
   };
 
-  // components/ShoppingCart.tsx
-
   const handleCheckout = async () => {
     if (selectedProducts.length === 0) {
       alert("Please select at least one product to proceed to checkout.");
       return;
     }
-    setLoading(true); // Set loading to true before the asynchronous operation
+    setLoading(true);
 
     try {
-      // Simulate an async operation (replace with your actual API call)
       await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Redirect after successful checkout (or your API call completes)
       window.location.href = "/checkout/form";
     } catch (error) {
       console.error("Error during checkout:", error);
       alert("Error during checkout. Please try again.");
     } finally {
-      setLoading(false); // Set loading to false, regardless of success or failure
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex flex-col p-6 bg-gray-50">
-      <div className="max-w-4xl mx-auto w-full border p-6 mb-10 shadow-lg bg-white rounded-lg">
-        <h1 className="text-2xl mb-6">Your Shopping Cart</h1>
+    <div className="flex flex-col p-4 bg-gray-50">
+      <div className="max-w-4xl mx-auto w-full border p-4 mb-6 shadow-lg bg-white rounded-lg">
+        <h1 className="text-xl md:text-2xl mb-4">Your Shopping Cart</h1>
         <p className="text-sm text-gray-500 mb-4">
           Total Products: {products.length}
         </p>
+
+        {/* Mobile View */}
+        <div className="md:hidden">
+          {products.map((product) => (
+            <div key={product._id} className="border-b pb-4 mb-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={selectedProducts.includes(product._id)}
+                    onChange={() => handleProductSelect(product._id)}
+                    className="w-4 h-4"
+                  />
+                  <div className="w-16 h-16 relative ml-4">
+                    <Image
+                      src={product.imageurl.url}
+                      alt={product.name}
+                      fill
+                      className="rounded-lg object-cover"
+                    />
+                  </div>
+                </div>
+                <button
+                  onClick={() => deleteProduct(product._id)}
+                  className="text-red-600 hover:text-red-800"
+                >
+                  <FaTrash className="text-xl" />
+                </button>
+              </div>
+              <div className="mt-2">
+                <h3 className="font-medium">{product.name}</h3>
+                <p className="text-sm text-gray-500">£{product.price}</p>
+              </div>
+              <div className="flex items-center justify-between mt-2">
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => decrementQuantity(product._id)}
+                    className="px-3 py-1 bg-gray-300 text-gray-700 rounded"
+                  >
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    value={product.quantity}
+                    readOnly
+                    className="w-12 text-center text-gray-700 bg-transparent border-none"
+                  />
+                  <button
+                    onClick={() => incrementQuantity(product._id)}
+                    className="px-3 py-1 bg-gray-300 text-gray-700 rounded"
+                  >
+                    +
+                  </button>
+                </div>
+                <p className="text-right">
+                  £{(product.price * product.quantity).toFixed(2)}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
 
         {/* Desktop View */}
         <div className="hidden md:block">
@@ -258,7 +306,7 @@ const ShoppingCart = () => {
 
         {/* Delete All Products */}
         {products.length > 0 && (
-          <div className="mt-6">
+          <div className="mt-6 hidden md:block">
             <button
               onClick={deleteAllProducts}
               className="bg-red-500 text-white py-2 px-6 rounded hover:bg-red-600 transition font-satoshi"
@@ -273,5 +321,3 @@ const ShoppingCart = () => {
 };
 
 export default ShoppingCart;
-
-// ... rest of the component remains the same

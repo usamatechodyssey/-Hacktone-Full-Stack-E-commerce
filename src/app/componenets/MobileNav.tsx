@@ -11,6 +11,25 @@ interface SearchProduct {
   price: number;
 }
 
+interface CartProduct {
+  quantity: number;
+}
+
+// Helper function to calculate total quantity
+const getTotalQuantity = () => {
+  if (typeof window !== "undefined") {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      const cart: Record<string, CartProduct> = JSON.parse(storedCart);
+      return Object.values(cart).reduce(
+        (total, product) => total + product.quantity,
+        0
+      );
+    }
+  }
+  return 0;
+};
+
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<SearchProduct[]>([]);
@@ -56,6 +75,28 @@ export default function SearchBar() {
 
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isSearchOpen, isSidebarOpen]);
+
+  const [cartQuantity, setCartQuantity] = useState(0);
+
+  // Navbar toggle function
+
+  useEffect(() => {
+    const updateCartQuantity = () => {
+      setCartQuantity(getTotalQuantity());
+    };
+
+    // Update quantity initially
+    updateCartQuantity();
+
+    // Listen for storage changes & custom cartUpdated event
+    window.addEventListener("storage", updateCartQuantity);
+    window.addEventListener("cartUpdated", updateCartQuantity);
+
+    return () => {
+      window.removeEventListener("storage", updateCartQuantity);
+      window.removeEventListener("cartUpdated", updateCartQuantity);
+    };
+  }, []);
 
   return (
     <div className="xm:flex md:hidden">
@@ -161,12 +202,19 @@ export default function SearchBar() {
           <Search size={24} />
           <span className="text-xs">Search</span>
         </button>
-
         <Link
           href="/CardPage"
-          className="flex flex-col items-center text-gray-700"
+          className="relative flex flex-col items-center text-gray-700"
         >
           <ShoppingBag size={24} />
+
+          {/* Cart Quantity Badge */}
+          {cartQuantity > 0 && (
+            <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-xs rounded-full px-2 py-1">
+              {cartQuantity}
+            </span>
+          )}
+
           <span className="text-xs">Cart</span>
         </Link>
       </div>

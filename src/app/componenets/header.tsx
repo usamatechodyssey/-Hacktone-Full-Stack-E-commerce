@@ -130,7 +130,7 @@ export default function Home() {
               </li>
             </ul>
           </div>
-          <div className="flex xm:gap-2 md:gap-4 items-center ">
+          <div className="flex xm:gap-1 md:gap-4 items-center ">
             <div className="  xm:hidden md:block">
               <SearchBar />
             </div>
@@ -138,7 +138,7 @@ export default function Home() {
             <AuthButtons />
 
             <Link href="/CardPage">
-              <button className="relative">
+              <button className="relative hidden md:block">
                 <Image
                   height={24}
                   width={24}

@@ -54,7 +54,7 @@ export default function ProfileDropdown() {
         <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
           {/* z-50 ensures the dropdown appears above other content */}
           <Link
-            href="/manage-account"
+            href="/"
             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
           >
             Manage My Account
@@ -66,13 +66,13 @@ export default function ProfileDropdown() {
             My Orders
           </Link>
           <Link
-            href="/my-wishlist"
+            href="/"
             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
           >
             My Wishlist
           </Link>
           <Link
-            href="/settings"
+            href="/"
             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
           >
             Settings
